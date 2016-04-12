@@ -4,7 +4,12 @@ A simple `go` package for managing configuration files.
 
 Saves & loads configuration from files using simple interfaces.
 
+Supported format: JSON
+
 ## Usage
+```
+go get "github.com/dtylman/settings"
+```
 
 ```go
 import (
