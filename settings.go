@@ -69,11 +69,39 @@ func (v View) Get(key string, def interface{}) interface{} {
 	subkeys := strings.SplitN(key, ".", 2)
 	val, ok := v[subkeys[0]]
 	if ok {
-		view, ok := val.(map[string]interface{})
+		view, ok := val.(View)
 		if ok {
-			return View(view).Get(subkeys[1], def)
+			return view.Get(subkeys[1], def)
+		}
+		m, ok := val.(map[string]interface{})
+		if ok {
+			return View(m).Get(subkeys[1], def)
 		}
 		return val
 	}
 	return def
+}
+
+//Has returns true if view has the key
+func (v View) Has(key string) bool {
+	subkeys := strings.SplitN(key, ".", 2)
+	val, ok := v[subkeys[0]]
+	if ok {
+		view, ok := val.(map[string]interface{})
+		if ok {
+			return View(view).Has(subkeys[1])
+		}
+		return true
+	}
+	return false
+}
+
+//GetString gets a configuration item as a string
+func (v View) GetString(key string, def string) string {
+	val := v.Get(key, def)
+	s, ok := val.(string)
+	if ok {
+		return s
+	}
+	return fmt.Sprintf("%v", val)
 }

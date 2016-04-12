@@ -1,24 +1,16 @@
-# settings
+package main
 
-A simple `go` package for managing configuration files.
-
-Saves & loads configuration from files using simple interfaces.
-
-## Usage
-
-```go
 import (
+	"log"
+
 	"github.com/dtylman/settings"
 )
-```
 
-## Example
+var conf = settings.New()
 
-```go
 const confFile = "example.conf"
 
 func main() {
-    conf := settings.New()
 	err := conf.Load(confFile, settings.FormatJSON)
 	if err != nil {
 		log.Printf("Cannot load configuration file: %v", err)
@@ -32,5 +24,3 @@ func main() {
 	log.Println("Saved to ", confFile)
 	conf.Print(settings.FormatJSON)
 }
-```
-

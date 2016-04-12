@@ -11,8 +11,11 @@ func TestLoad(t *testing.T) {
 	view := New()
 	err := view.Load(filepath.Join("testdata", "starwars.json.conf"), FormatJSON)
 	assert.NoError(t, err)
-	assert.EqualValues(t, view.Get("jedi.yoda.occupation", nil), "master")
+	assert.True(t, view.Has("jedi.yoda.occupation"))
+	assert.EqualValues(t, view.GetString("jedi.yoda.occupation", ""), "master")
+	assert.False(t, view.Has("ho.ho.ho"))
 	assert.EqualValues(t, view.Get("ho.ho.ho", "ho"), "ho")
+
 }
 
 func TestCreate(t *testing.T) {
