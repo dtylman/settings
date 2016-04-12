@@ -1,2 +1,10 @@
-# configuration
-go package for managing app configuration
+# settings
+
+simple `go` package for managing configuration files.
+
+
+## Usage
+
+```go
+```
+
