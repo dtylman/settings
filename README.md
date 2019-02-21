@@ -1,5 +1,7 @@
 # settings
 
+[![Go Report Card](https://goreportcard.com/badge/github.com/dtylman/settings)](https://goreportcard.com/report/github.com/dtylman/settings)
+
 A simple `go` package for managing configuration files.
 
 Saves & loads configuration from files using simple interfaces.
