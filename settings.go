@@ -57,7 +57,10 @@ func (v View) Set(key string, value interface{}) {
 		name := subkeys[0]
 		view, ok := v[name].(View)
 		if !ok {
-			view = make(View)
+			view, ok = v[name].(map[string]interface{})
+			if !ok {
+				view = make(View)
+			}
 		}
 		view.Set(subkeys[1], value)
 		v[name] = view
